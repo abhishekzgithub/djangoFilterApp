@@ -1,0 +1,60 @@
+<html>
+   <head>
+
+   </head>
+   <body>
+      <style>
+         table {
+           font-family: arial, sans-serif;
+           border-collapse: collapse;
+           width: 100%;
+         }
+         form{
+            display: flex-box;
+            justify-content: flex-start;
+            width: 100%;
+         }
+         td, th {
+           border: 1px solid #dddddd;
+           text-align: left;
+           padding: 8px;
+         }
+         tr:nth-child(even) {
+           background-color: #dddddd;
+         }
+         </style>
+   <form method="GET" class="form">
+      {% csrf_token %}
+      <form method="get">
+         {{ filter.form.as_p }}
+         <button type="submit">Search</button>
+       </form>
+       <table>
+         {% csrf_token %}
+         <tr>
+            <!-- <th><label for="id">Id</label></th> -->
+            <th><label for="classtype">Class type</label></th>
+            <th><label for="rate">Rate</label></th>
+            <th><label for="exposure_unit">Exposure Unit</label></th>
+            <th><label for="date">Date</label></th>
+            <th><label for="state">State</label></th>
+            <th><label for="user">User</label></th>
+            <th><label for="Insurance">Insurance Premium</label></th>
+         </tr>
+       {%for v in filter.qs%}
+       <tr>
+          <!-- <td>{{v.id}}</td> -->
+          <td>{{v.classtype}}</td>
+          <td >{{v.rate}}</td>
+          <td >{{v.exposure_unit}}</td>
+          <td >{{v.date}}</td>
+          <td >{{v.state}}</td>
+          <td >{{v.user}}</td>
+          <td >{{v.calculate_premium}}</td>
+       </tr>
+ 
+     {% endfor%}
+       </table>
+</form>
+   </body>
+</html>
